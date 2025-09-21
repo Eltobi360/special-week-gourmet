@@ -58,7 +58,7 @@
                 <li><a href="#caracteristicas" class="hover:text-amber-400 transition-colors">Características</a></li>
                 <li><a href="#demo" class="hover:text-amber-400 transition-colors">Muestra</a></li>
                 <li><a href="#contacto" class="hover:text-amber-400 transition-colors">Contacto</a></li>
-                <li><a href="#inicio_de_sesion" class="hover:text-amber-400 transition-colors">Inicio de Sesión</a></li>
+                <li><a href="{{ route('login') }}" class="hover:text-amber-400 transition-colors">Inicio de Sesión</a></li>
             </ul>
         </nav>
     </header>
