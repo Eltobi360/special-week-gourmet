@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductoController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,4 +24,10 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+Route::resource('productos',ProductoController::class)->middleware(['auth']);
+
 require __DIR__.'/auth.php';
+
+
+
+
