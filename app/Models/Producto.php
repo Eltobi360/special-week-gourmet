@@ -15,4 +15,7 @@ class Producto extends Model
         'stock_minimo',
         'costo_promedio',
     ];
+
+   
+
 }
