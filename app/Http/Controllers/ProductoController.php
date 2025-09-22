@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Medida;
 class ProductoController extends Controller
 {
     /**
@@ -21,7 +21,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('productos.create');
+        $medidas = Medida::all();
+        return view('productos.create', compact('medidas'));
     }
 
     /**
@@ -33,7 +34,7 @@ class ProductoController extends Controller
             'nombre' => 'required|string|max:255',
             'codigo_sku' => 'nullable|string|max:50|unique:productos,codigo_sku',
             'descripcion' => 'nullable|string',
-            'unidad_medida' => 'required|string|max:20',
+            'medida_id' => 'required|exists:medidas,id',
             'stock_actual' => 'required|numeric|min:0',
             'stock_minimo' => 'nullable|numeric|min:0',
             'costo_promedio' => 'nullable|numeric|min:0',
@@ -55,9 +56,10 @@ class ProductoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Producto $producto)
     {
-         return view('productos.edit', compact('producto'));
+        $medidas = Medida::all();
+        return view('productos.edit', compact('producto', 'medidas'));
     }
 
     /**
@@ -69,7 +71,7 @@ class ProductoController extends Controller
             'nombre' => 'required|string|max:255',
             'codigo_sku' => 'nullable|string|max:50|unique:productos,codigo_sku,' . $producto->id,
             'descripcion' => 'nullable|string',
-            'unidad_medida' => 'required|string|max:20',
+            'medida_id' => 'required|exists:medidas,id',
             'stock_actual' => 'required|numeric|min:0',
             'stock_minimo' => 'nullable|numeric|min:0',
             'costo_promedio' => 'nullable|numeric|min:0',

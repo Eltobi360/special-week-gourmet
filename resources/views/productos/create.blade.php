@@ -25,8 +25,15 @@
             </div>
 
             <div>
-                <label>Unidad de medida</label>
-                <input type="text" name="unidad_medida" class="w-full border rounded p-2" required>
+                <label for="medida_id">Medida</label>
+<select name="medida_id" id="medida_id" class="border rounded p-2" required>
+    <option value="">-- Selecciona una medida --</option>
+    @foreach($medidas as $medida)
+        <option value="{{ $medida->id }}" {{ old('medida_id') == $medida->id ? 'selected' : '' }}>
+            {{ $medida->nombre }} ({{ $medida->abreviatura }})
+        </option>
+    @endforeach
+</select>
             </div>
 
             <div>
