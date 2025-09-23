@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Compra extends Model
 {
     protected $table = 'compras';
+   
 
     protected $fillable = [
         'proveedor_id',
@@ -24,8 +25,11 @@ class Compra extends Model
 
 
     // 👇 Relación futura con DetalleCompra (opcional por ahora)
-    // public function detalles()
-    // {
-    //     return $this->hasMany(DetalleCompra::class, 'compra_id');
-    // }
+    public function detalles()
+    {
+        return $this->hasMany(DetalleCompra::class, 'compra_id');
+    }
+
+
+   
 }

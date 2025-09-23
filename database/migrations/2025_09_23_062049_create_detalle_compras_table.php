@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detalle_compras', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // Laravel usa "id" por defecto
+            $table->foreignId('compra_id')->constrained('compras')->onDelete('cascade');
+            $table->foreignId('producto_id')->constrained('productos')->onDelete('restrict');
+            $table->decimal('cantidad', 10, 2);
+            $table->decimal('precio_unitario', 10, 2);
+            $table->timestamps(); // fechas automáticas
         });
     }
 

@@ -4,8 +4,12 @@
     </x-slot>
 
     <div class="p-6">
-        <a href="{{ route('compras.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded">Nueva Compra</a>
+        <!-- Botón para crear nueva compra -->
+        <a href="{{ route('compras.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded">
+            Nueva Compra
+        </a>
 
+        <!-- Tabla de compras -->
         <table class="w-full mt-4 border">
             <thead class="bg-gray-200">
                 <tr>
@@ -28,7 +32,10 @@
                         <td class="border px-4 py-2">{{ $compra->monto_total }}</td>
                         <td class="border px-4 py-2">{{ ucfirst($compra->estado) }}</td>
                         <td class="border px-4 py-2 flex gap-2">
+                            <!-- Editar: pasa el objeto Compra completo -->
                             <a href="{{ route('compras.edit', $compra) }}" class="px-2 py-1 bg-yellow-500 text-white rounded">Editar</a>
+
+                            <!-- Eliminar: pasa el objeto -->
                             <form action="{{ route('compras.destroy', $compra) }}" method="POST" onsubmit="return confirm('¿Eliminar esta compra?')">
                                 @csrf
                                 @method('DELETE')
@@ -40,6 +47,7 @@
             </tbody>
         </table>
 
+        <!-- Paginación -->
         <div class="mt-4">
             {{ $compras->links() }}
         </div>
