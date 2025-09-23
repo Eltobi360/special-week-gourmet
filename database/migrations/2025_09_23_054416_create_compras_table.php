@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('compras', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // id_compra en tu modelo mental, pero Laravel lo maneja como id
+            $table->unsignedBigInteger('proveedor_id'); // conexión con proveedores
+            $table->string('numero_factura', 100)->nullable();
+            $table->date('fecha_compra');
+            $table->decimal('monto_total', 10, 2)->default(0);
+            $table->string('estado')->default('pendiente'); // opcional, pero útil
+            $table->timestamps(); // equivale a fecha_creacion y ultima_modificacion
         });
     }
 

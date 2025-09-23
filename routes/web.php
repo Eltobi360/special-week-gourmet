@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 
+use App\Http\Controllers\CompraController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,7 +27,11 @@ Route::get('/login', function () {
 
 Route::resource('productos',ProductoController::class)->middleware(['auth']);
 
-Route::resource('proveedores', \App\Http\Controllers\ProveedorController::class);
+Route::resource('proveedores', \App\Http\Controllers\ProveedorController::class); //segunda forma de jalar o registrar las rutas 
+
+Route::resource('compras', CompraController::class);
+
+
 
 
 require __DIR__.'/auth.php';
