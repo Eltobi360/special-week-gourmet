@@ -26,6 +26,9 @@ Route::get('/login', function () {
 
 Route::resource('productos',ProductoController::class)->middleware(['auth']);
 
+Route::resource('proveedores', \App\Http\Controllers\ProveedorController::class);
+
+
 require __DIR__.'/auth.php';
 
 
